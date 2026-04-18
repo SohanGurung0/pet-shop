@@ -1,0 +1,237 @@
+/* ============================================================
+   PawShop — Home Styles
+   ============================================================ */
+
+/* ── Hero Section ─────────────────────────────────────────── */
+.hero {
+  padding: 6rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  gap: 4rem;
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.hero-badge {
+  display: inline-block;
+  background-color: var(--color-secondary);
+  color: #2D5A4A;
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--color-primary);
+  position: relative;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--color-muted);
+  margin-bottom: 2.5rem;
+  max-width: 500px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  border-top: 1px solid #eee;
+  padding-top: 2rem;
+}
+
+.hero-stat strong {
+  display: block;
+  font-size: 1.5rem;
+  color: var(--color-text);
+}
+
+.hero-stat span {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-blob {
+  width: 450px;
+  height: 450px;
+  background: var(--color-secondary);
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15rem;
+  animation: blobby 10s infinite alternate linear;
+  box-shadow: var(--shadow-lg);
+}
+
+@keyframes blobby {
+  from { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  to { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+
+/* ── Generic Sections ─────────────────────────────────────── */
+.section { padding: 5rem 0; }
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+.section-title { font-size: 2.25rem; color: var(--color-text); }
+.section-link { color: var(--color-primary); font-weight: 600; }
+
+/* ── Category Grid ─────────────────────────────────────────── */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.category-card {
+  background-color: white;
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius);
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.category-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+}
+
+.category-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+.category-card h3 { margin-bottom: 0.5rem; font-size: 1.25rem; }
+.category-card p { font-size: 0.9rem; color: var(--color-muted); }
+
+.category-card--food { border-bottom: 5px solid var(--color-secondary); }
+.category-card--toy { border-bottom: 5px solid var(--color-accent); }
+.category-card--vitamin { border-bottom: 5px solid var(--color-lavender); }
+.category-card--supplement { border-bottom: 5px solid var(--color-info); }
+
+/* ── Product Multi-grid (Shared) ──────────────────────────── */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.product-card {
+  background-color: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card:hover { transform: translateY(-5px); }
+
+.product-card__img {
+  height: 200px;
+  background-color: #f9f9f9;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.product-card:hover .product-card__img img { transform: scale(1.05); }
+
+.product-card__img .product-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+.product-card__body { padding: 1.5rem; flex: 1; }
+.product-card__name { font-size: 1.15rem; margin-bottom: 0.5rem; color: var(--color-text); }
+.product-card__desc {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.product-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.product-card__price { font-size: 1.25rem; font-weight: 800; color: var(--color-primary); }
+
+.add-to-cart-form { padding: 0 1.5rem 1.5rem; }
+
+/* ── Banner Section ───────────────────────────────────────── */
+.section--banner { background-color: var(--color-primary); color: white; padding: 4rem 0; }
+.banner-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 3rem;
+  text-align: center;
+}
+
+.banner-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+.banner-item h4 { font-size: 1.25rem; margin-bottom: 0.25rem; }
+.banner-item p { opacity: 0.9; font-size: 0.9rem; }
+
+/* ── Empty State ──────────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 4rem;
+  color: var(--color-muted);
+  font-size: 1.1rem;
+}
+
+/* ── Mobile ────────────────────────────────────────────────── */
+@media (max-width: 992px) {
+  .hero { flex-direction: column; text-align: center; padding-top: 3rem; }
+  .hero-image { justify-content: center; width: 100%; }
+  .hero-blob { width: 300px; height: 300px; font-size: 10rem; }
+  .hero-title { font-size: 3rem; }
+  .hero-cta { justify-content: center; }
+  .hero-stats { justify-content: center; }
+}
