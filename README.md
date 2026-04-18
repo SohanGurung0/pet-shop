@@ -71,4 +71,4 @@ apt_cw/
 - **Note**: No default user accounts are pre-approved. New users register with status 'pending' and must be approved by an admin via the admin dashboard.
 
 ---
-*Created by Antigravity AI for CS5054NP Coursework.*
+

@@ -102,7 +102,7 @@ INSERT INTO users (full_name, email, phone, password, role, status) VALUES
 ('Admin User',
  'admin@petsupply.com',
  '0000000000',
- '$2a$10$E9H3.nEn4dv9Kk0bNqXxAOVq6hV/V7U8UHBzBpCb/xsYqFzZeXnm6',
+ '$2a$10$Bm00UioOASVRpSaa8M6Dket7tcBHLo27f0OnDfJLFKCnRYGyicPZW',
  'admin',
  'approved');
 

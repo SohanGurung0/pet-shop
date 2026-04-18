@@ -17,16 +17,15 @@ public class ProductDaoImpl implements ProductDao {
     // ── Helper: map one ResultSet row to a Product object ─────
     private Product mapRow(ResultSet rs) throws SQLException {
         return new Product(
-            rs.getInt("id"),
-            rs.getString("name"),
-            rs.getString("description"),
-            rs.getBigDecimal("price"),
-            rs.getString("category"),
-            rs.getString("image_url"),
-            rs.getInt("stock"),
-            rs.getTimestamp("created_at"),
-            rs.getTimestamp("updated_at")
-        );
+                rs.getInt("id"),
+                rs.getString("name"),
+                rs.getString("description"),
+                rs.getBigDecimal("price"),
+                rs.getString("category"),
+                rs.getString("image_url"),
+                rs.getInt("stock"),
+                rs.getTimestamp("created_at"),
+                rs.getTimestamp("updated_at"));
     }
 
     // ── insertProduct ─────────────────────────────────────────
@@ -41,7 +40,7 @@ public class ProductDaoImpl implements ProductDao {
         try {
             conn = DatabaseConnection.getConnection();
             String sql = "INSERT INTO products (name, description, price, category, image_url, stock) "
-                       + "VALUES (?, ?, ?, ?, ?, ?)";
+                    + "VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, product.getName());
             stmt.setString(2, product.getDescription());
@@ -69,7 +68,8 @@ public class ProductDaoImpl implements ProductDao {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setInt(1, id);
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) return mapRow(rs);
+            if (rs.next())
+                return mapRow(rs);
         } catch (SQLException e) {
             System.out.println("Error finding product by id: " + e.getMessage());
         } finally {
@@ -88,7 +88,8 @@ public class ProductDaoImpl implements ProductDao {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, name);
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) return mapRow(rs);
+            if (rs.next())
+                return mapRow(rs);
         } catch (SQLException e) {
             System.out.println("Error finding product by name: " + e.getMessage());
         } finally {
@@ -107,7 +108,8 @@ public class ProductDaoImpl implements ProductDao {
             String sql = "SELECT * FROM products ORDER BY created_at DESC";
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
-            while (rs.next()) products.add(mapRow(rs));
+            while (rs.next())
+                products.add(mapRow(rs));
         } catch (SQLException e) {
             System.out.println("Error fetching all products: " + e.getMessage());
         } finally {
@@ -127,7 +129,8 @@ public class ProductDaoImpl implements ProductDao {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, category);
             ResultSet rs = stmt.executeQuery();
-            while (rs.next()) products.add(mapRow(rs));
+            while (rs.next())
+                products.add(mapRow(rs));
         } catch (SQLException e) {
             System.out.println("Error finding products by category: " + e.getMessage());
         } finally {
@@ -144,13 +147,14 @@ public class ProductDaoImpl implements ProductDao {
         try {
             conn = DatabaseConnection.getConnection();
             String sql = "SELECT * FROM products WHERE LOWER(name) LIKE ? OR LOWER(description) LIKE ? "
-                       + "ORDER BY name ASC";
+                    + "ORDER BY name ASC";
             String like = "%" + keyword.toLowerCase() + "%";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, like);
             stmt.setString(2, like);
             ResultSet rs = stmt.executeQuery();
-            while (rs.next()) products.add(mapRow(rs));
+            while (rs.next())
+                products.add(mapRow(rs));
         } catch (SQLException e) {
             System.out.println("Error searching products: " + e.getMessage());
         } finally {
@@ -166,7 +170,7 @@ public class ProductDaoImpl implements ProductDao {
         try {
             conn = DatabaseConnection.getConnection();
             String sql = "UPDATE products SET name=?, description=?, price=?, category=?, "
-                       + "image_url=?, stock=? WHERE id=?";
+                    + "image_url=?, stock=? WHERE id=?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, product.getName());
             stmt.setString(2, product.getDescription());
@@ -211,7 +215,8 @@ public class ProductDaoImpl implements ProductDao {
             String sql = "SELECT COUNT(*) FROM products";
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) return rs.getInt(1);
+            if (rs.next())
+                return rs.getInt(1);
         } catch (SQLException e) {
             System.out.println("Error counting products: " + e.getMessage());
         } finally {
@@ -231,7 +236,7 @@ public class ProductDaoImpl implements ProductDao {
             PreparedStatement stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                results.add(new Object[]{rs.getString("category"), rs.getInt("cnt")});
+                results.add(new Object[] { rs.getString("category"), rs.getInt("cnt") });
             }
         } catch (SQLException e) {
             System.out.println("Error counting by category: " + e.getMessage());

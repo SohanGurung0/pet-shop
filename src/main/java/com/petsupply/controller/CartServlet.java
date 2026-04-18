@@ -19,11 +19,11 @@ import java.util.Map;
  * Cart is stored in the session as Map&lt;Integer, Integer&gt;
  * (productId → quantity).
  *
- * GET  /cart          → display cart contents
- * POST /cart?action=add&id=3&qty=1    → add/increase item
- * POST /cart?action=remove&id=3       → remove item entirely
+ * GET /cart → display cart contents
+ * POST /cart?action=add&id=3&qty=1 → add/increase item
+ * POST /cart?action=remove&id=3 → remove item entirely
  * POST /cart?action=update&id=3&qty=2 → set exact quantity
- * POST /cart?action=clear             → empty cart
+ * POST /cart?action=clear → empty cart
  */
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {
@@ -32,8 +32,7 @@ public class CartServlet extends HttpServlet {
 
     @SuppressWarnings("unchecked")
     private Map<Integer, Integer> getCart(HttpSession session) {
-        Map<Integer, Integer> cart =
-            (Map<Integer, Integer>) session.getAttribute("cart");
+        Map<Integer, Integer> cart = (Map<Integer, Integer>) session.getAttribute("cart");
         if (cart == null) {
             cart = new LinkedHashMap<>();
             session.setAttribute("cart", cart);
@@ -74,11 +73,11 @@ public class CartServlet extends HttpServlet {
         Map<Integer, Integer> cart = getCart(session);
 
         String action = request.getParameter("action");
-        String idParam  = request.getParameter("id");
+        String idParam = request.getParameter("id");
         String qtyParam = request.getParameter("qty");
 
         if ("add".equals(action) && idParam != null) {
-            int id  = Integer.parseInt(idParam);
+            int id = Integer.parseInt(idParam);
             int qty = (qtyParam != null) ? Integer.parseInt(qtyParam) : 1;
             cart.merge(id, qty, Integer::sum);
 
@@ -86,9 +85,13 @@ public class CartServlet extends HttpServlet {
             cart.remove(Integer.parseInt(idParam));
 
         } else if ("update".equals(action) && idParam != null && qtyParam != null) {
-            int id  = Integer.parseInt(idParam);
+            int id = Integer.parseInt(idParam);
             int qty = Integer.parseInt(qtyParam);
-            if (qty <= 0) { cart.remove(id); } else { cart.put(id, qty); }
+            if (qty <= 0) {
+                cart.remove(id);
+            } else {
+                cart.put(id, qty);
+            }
 
         } else if ("clear".equals(action)) {
             cart.clear();
