@@ -2,6 +2,7 @@
    PawShop — Auth Styles (Login/Register)
    ============================================================ */
 
+
 .auth-body {
   background-color: #F0F4F8; /* Brighter background for auth */
   min-height: 100vh;
@@ -9,8 +10,7 @@
   align-items: center;
   justify-content: center;
 }
-
-/* Password toggle button for show/hide functionality */
+/*
 .password-toggle {
   position: absolute;
   right: 1rem;
@@ -24,10 +24,7 @@
   padding: 0.25rem;
   line-height: 1;
 }
-
-.password-toggle:hover {
-  color: #333;
-}
+*/
 
 .auth-wrapper {
   display: flex;
@@ -41,49 +38,10 @@
   margin: 1.5rem;
 }
 
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
-
 /* ── Panels ───────────────────────────────────────────────── */
 .auth-panel {
   flex: 1;
 }
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
-
 .auth-panel--left {
   background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-lavender) 100%);
   color: white;
@@ -94,26 +52,6 @@
   padding: 3rem;
   text-align: center;
 }
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
-
 .auth-panel--right {
   display: flex;
   align-items: center;
@@ -122,47 +60,9 @@
   background-color: white;
 }
 
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
-
 /* ── Brand ────────────────────────────────────────────────── */
 .auth-brand {
   margin-bottom: 2rem;
-}
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
 }
 
 .auth-logo {
@@ -170,96 +70,19 @@
   margin-bottom: 1rem;
 }
 
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
-
 .auth-brand-name {
   font-size: 2.5rem;
   font-weight: 800;
   margin-bottom: 0.5rem;
 }
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
-
 .auth-brand-tagline {
   font-size: 1.1rem;
   opacity: 0.9;
 }
 
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
-
 .auth-illustration {
   font-size: 8rem;
   filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
-}
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
 }
 
 /* ── Form Container ───────────────────────────────────────── */
@@ -268,48 +91,10 @@
   max-width: 360px;
 }
 
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
-
 .auth-title {
   font-size: 1.75rem;
   color: var(--color-text);
   margin-bottom: 0.25rem;
-}
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
 }
 
 .auth-subtitle {
@@ -318,24 +103,6 @@
   margin-bottom: 2rem;
 }
 
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
 
 .auth-link-text {
   margin-top: 1.5rem;
@@ -344,71 +111,15 @@
   color: var(--color-muted);
 }
 
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
-
 .auth-link {
   color: var(--color-primary);
   font-weight: 600;
-}
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
 }
 
 .auth-link:hover {
   text-decoration: underline;
 }
 
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
 
 /* ── Form Enhancements ────────────────────────────────────── */
 .form-row {
@@ -416,48 +127,12 @@
   margin-bottom: 1.25rem;
 }
 
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
 
 .form-row--space-between {
   justify-content: space-between;
   align-items: center;
 }
 
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
 
 .form-check-label {
   display: flex;
@@ -467,26 +142,6 @@
   color: var(--color-muted);
   cursor: pointer;
 }
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
-
 /* ── Mobile ────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .auth-wrapper {
@@ -495,202 +150,14 @@
     min-height: auto;
   }
 
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
   .auth-panel--left {
     padding: 2rem;
   }
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
-  .auth-logo { font-size: 2.5rem; }
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
+  .auth-logo { font-size: 2.5rem}
   .auth-brand-name { font-size: 1.8rem; }
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
   .auth-illustration { font-size: 4rem; margin-top: 1rem; }
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
   .auth-panel--right {
     padding: 2rem;
   }
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
 }
 
-.password-toggle:hover {
-  color: #333;
-}
-}
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
-
-.password-toggle:hover {
-  color: #333;
-}
-
-/* Password toggle button for show/hide functionality */
-.password-toggle {
-  position: absolute;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  font-size: 1.2rem;
-  cursor: pointer;
-  color: #666;
-  padding: 0.25rem;
-  line-height: 1;
-}
-
-.password-toggle:hover {
-  color: #333;
-}

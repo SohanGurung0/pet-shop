@@ -63,10 +63,17 @@
           <input type="password" id="password" name="password" class="form-input"
                  placeholder="Your password"
                  required autocomplete="current-password"/>
-          <button type="button" class="password-toggle" id="togglePassword" aria-label="Show password">
-            👁️
-          </button>
+                <div class="form-row form-row--space-between">
+                   <label class="form-check-label">
+                      <input type="checkbox" class="password-toggle" id="togglePassword" onclick="password.type = this.checked ? 'text' : 'password'">
+                         <span>Show Password</span>
+                     </label>
+                </div>
         </div>
+
+        <button type="submit" id="loginBtn" class="btn btn--primary btn--full">
+          Sign In
+        </button>
 
         <div class="form-row form-row--space-between">
           <label class="form-check-label">
@@ -74,10 +81,6 @@
             <span>Remember me</span>
           </label>
         </div>
-
-        <button type="submit" id="loginBtn" class="btn btn--primary btn--full">
-          Sign In
-        </button>
 
         <p class="auth-link-text">
           Don't have an account?
@@ -89,14 +92,14 @@
   </div>
 
 </div>
-  <script>
+  <!--<script>
     document.getElementById('togglePassword').addEventListener('click', function () {
       const passwordInput = document.getElementById('password');
       const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
       passwordInput.setAttribute('type', type);
-      // Toggle icon
       this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
     });
-  </script>
+
+  </script> -->
 </body>
 </html>
