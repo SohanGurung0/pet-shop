@@ -50,6 +50,12 @@ public class AuthFilter implements Filter {
         String requestURI = request.getRequestURI();
         String contextPath = request.getContextPath();
 
+        // ── Bypass for public assets (uploaded images) ────────
+        if (requestURI.startsWith(contextPath + "/uploads")) {
+            chain.doFilter(req, res);
+            return;
+        }
+
         // ── No user session → redirect to login ──────────────
         if (user == null) {
             response.sendRedirect(contextPath + "/login");

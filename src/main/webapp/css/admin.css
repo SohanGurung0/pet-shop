@@ -110,6 +110,12 @@
 .image-preview-row { display: flex; align-items: center; gap: 1.5rem; }
 .image-preview { width: 100px; height: 100px; border-radius: 12px; object-fit: cover; border: 2px solid white; box-shadow: var(--shadow); }
 
+.image-preview-info { flex: 1; }
+.image-preview-text { font-size: 0.85rem; color: var(--color-muted); line-height: 1.4; }
+
+.form-file-input { padding: 0.5rem 0; border: none; background: transparent; }
+.form-file-input:focus { outline: none; box-shadow: none; }
+
 /* ── Badges ───────────────────────────────────────────────── */
 .role-badge { font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 12px; border: 1px solid transparent; }
 .role-badge--admin { background: #fee2e2; color: #991b1b; }

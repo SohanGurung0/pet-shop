@@ -3,6 +3,7 @@ package com.petsupply.service;
 import com.petsupply.dao.ProductDao;
 import com.petsupply.dao.ProductDaoImpl;
 import com.petsupply.model.Product;
+import com.petsupply.utils.ImageUtil;
 import com.petsupply.utils.ValidationUtil;
 
 import java.math.BigDecimal;
@@ -18,10 +19,11 @@ public class ProductService {
 
     /**
      * Add a new product with validation.
+     * The imagePath is already resolved by the servlet (via file upload or default).
      * Returns null on success, or an error message string on failure.
      */
     public String addProduct(String name, String description, String priceStr,
-                             String category, String imageUrl, String stockStr) {
+                             String category, String imagePath, String stockStr) {
 
         StringBuilder errors = new StringBuilder();
 
@@ -45,9 +47,9 @@ public class ProductService {
 
         if (errors.length() > 0) return errors.toString().trim();
 
-        String url = (imageUrl == null || imageUrl.trim().isEmpty())
+        String url = (imagePath == null || imagePath.trim().isEmpty())
                      ? "images/default-product.png"
-                     : imageUrl.trim();
+                     : imagePath.trim();
 
         Product product = new Product(
             name.trim(),
@@ -64,11 +66,12 @@ public class ProductService {
 
     /**
      * Update an existing product with validation.
+     * The imagePath is already resolved by the servlet (via file upload or existing).
      * Returns null on success, or an error message string on failure.
      */
     public String updateProduct(int id, String name, String description,
                                 String priceStr, String category,
-                                String imageUrl, String stockStr) {
+                                String imagePath, String stockStr) {
 
         StringBuilder errors = new StringBuilder();
 
@@ -99,9 +102,9 @@ public class ProductService {
 
         if (errors.length() > 0) return errors.toString().trim();
 
-        String url = (imageUrl == null || imageUrl.trim().isEmpty())
+        String url = (imagePath == null || imagePath.trim().isEmpty())
                      ? existing.getImageUrl()
-                     : imageUrl.trim();
+                     : imagePath.trim();
 
         existing.setName(name.trim());
         existing.setDescription(description == null ? "" : description.trim());
@@ -116,10 +119,16 @@ public class ProductService {
 
     /**
      * Delete a product by ID.
+     * Also cleans up the uploaded image file from disk.
      * Returns null on success, or an error message on failure.
      */
     public String deleteProduct(int id) {
-        if (productDao.findById(id) == null) return "Product not found.";
+        Product product = productDao.findById(id);
+        if (product == null) return "Product not found.";
+
+        // Clean up image file before deleting from DB
+        ImageUtil.deleteImage(product.getImageUrl());
+
         boolean ok = productDao.deleteProduct(id);
         return ok ? null : "Cannot delete product — it may be referenced in existing orders.";
     }

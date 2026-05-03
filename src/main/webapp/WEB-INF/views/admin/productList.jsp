@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="/WEB-INF/templates/head.jsp">
@@ -49,10 +50,20 @@
             <tr>
               <td class="text-muted">${p.id}</td>
               <td>
-                <img src="${pageContext.request.contextPath}/${p.imageUrl}"
-                     alt="<c:out value='${p.name}'/>"
-                     class="admin-table-thumb"
-                     onerror="this.src='${pageContext.request.contextPath}/images/default-product.png'"/>
+                <c:choose>
+                  <c:when test="${fn:startsWith(p.imageUrl, 'images/')}">
+                    <img src="${pageContext.request.contextPath}/${p.imageUrl}"
+                         alt="<c:out value='${p.name}'/>"
+                         class="admin-table-thumb"
+                         onerror="this.src='${pageContext.request.contextPath}/images/default-product.png'"/>
+                  </c:when>
+                  <c:otherwise>
+                    <img src="${pageContext.request.contextPath}/uploads/${p.imageUrl}"
+                         alt="<c:out value='${p.name}'/>"
+                         class="admin-table-thumb"
+                         onerror="this.src='${pageContext.request.contextPath}/images/default-product.png'"/>
+                  </c:otherwise>
+                </c:choose>
               </td>
               <td><strong><c:out value="${p.name}"/></strong></td>
               <td><span class="product-badge product-badge--${p.category}"><c:out value="${p.category}"/></span></td>

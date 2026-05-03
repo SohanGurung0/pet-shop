@@ -1,5 +1,6 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="/WEB-INF/templates/head.jsp">
@@ -17,7 +18,7 @@
     <div class="admin-topbar">
       <div>
         <h1 class="admin-page-title">Edit Product</h1>
-        <p class="admin-page-subtitle"><a href="${pageContext.request.contextPath}/admin/products">â† Back to Products</a></p>
+        <p class="admin-page-subtitle"><a href="${pageContext.request.contextPath}/admin/products">← Back to Products</a></p>
       </div>
     </div>
 
@@ -27,7 +28,7 @@
 
     <div class="admin-card admin-form-card">
       <form action="${pageContext.request.contextPath}/admin/products?action=edit"
-            method="post" id="editProductForm" novalidate>
+            method="post" id="editProductForm" novalidate enctype="multipart/form-data">
 
         <input type="hidden" name="id" value="${product.id}"/>
 
@@ -72,16 +73,40 @@
 <c:out value="${product.description}"/></textarea>
         </div>
 
+        <%-- Image preview showing current image when editing --%>
         <div class="form-group">
-          <label for="imageUrl" class="form-label">Image URL / Path</label>
+          <label class="form-label">Current Image</label>
           <div class="image-preview-row">
-            <img src="${pageContext.request.contextPath}/${product.imageUrl}"
-                 alt="Current image" class="image-preview"
-                 onerror="this.src='${pageContext.request.contextPath}/images/default-product.png'"/>
-            <input type="text" id="imageUrl" name="imageUrl" class="form-input"
-                   value="<c:out value='${product.imageUrl}'/>"
-                   placeholder="images/products/my-product.png"/>
+            <c:choose>
+              <c:when test="${not empty product.imageUrl and fn:startsWith(product.imageUrl, 'images/')}">
+                <%-- Static image from project --%>
+                <img src="${pageContext.request.contextPath}/${product.imageUrl}"
+                     alt="Current image" class="image-preview"
+                     onerror="this.src='${pageContext.request.contextPath}/images/default-product.png'"/>
+              </c:when>
+              <c:when test="${not empty product.imageUrl}">
+                <%-- Uploaded image from external folder --%>
+                <img src="${pageContext.request.contextPath}/uploads/${product.imageUrl}"
+                     alt="Current image" class="image-preview"
+                     onerror="this.src='${pageContext.request.contextPath}/images/default-product.png'"/>
+              </c:when>
+              <c:otherwise>
+                <img src="${pageContext.request.contextPath}/images/default-product.png"
+                     alt="Default image" class="image-preview"/>
+              </c:otherwise>
+            </c:choose>
+            <div class="image-preview-info">
+              <p class="image-preview-text">Upload a new image below to replace the current one,
+                or leave empty to keep it.</p>
+            </div>
           </div>
+        </div>
+
+        <div class="form-group">
+          <label for="image" class="form-label">Upload New Image</label>
+          <input type="file" id="image" name="image" class="form-input form-file-input"
+                 accept=".jpg,.jpeg,.png"/>
+          <small class="form-hint">Accepted formats: JPG, JPEG, PNG (max 10 MB). Leave blank to keep current image.</small>
         </div>
 
         <div class="form-actions">

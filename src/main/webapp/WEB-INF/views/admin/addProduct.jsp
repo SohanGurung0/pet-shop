@@ -32,7 +32,7 @@
 
           <div class="admin-card admin-form-card">
             <form action="${pageContext.request.contextPath}/admin/products?action=add" method="post"
-              id="addProductForm" novalidate>
+              id="addProductForm" novalidate enctype="multipart/form-data">
 
               <div class="form-grid-2">
 
@@ -78,11 +78,10 @@
               </div>
 
               <div class="form-group">
-                <label for="imageUrl" class="form-label">Image URL / Path</label>
-                <input type="text" id="imageUrl" name="imageUrl" class="form-input"
-                  placeholder="images/products/my-product.png" value="<c:out value='${param.imageUrl}' default=''/>" />
-                <small class="form-hint">Relative path from webapp root, e.g. images/products/food.png. Leave blank for
-                  default.</small>
+                <label for="image" class="form-label">Product Image</label>
+                <input type="file" id="image" name="image" class="form-input form-file-input"
+                  accept=".jpg,.jpeg,.png" />
+                <small class="form-hint">Accepted formats: JPG, JPEG, PNG (max 10 MB). Leave blank for default image.</small>
               </div>
 
               <div class="form-actions">

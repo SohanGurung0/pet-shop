@@ -1,4 +1,4 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
   <%@ taglib prefix="c" uri="jakarta.tags.core" %>
     <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
       <!DOCTYPE html>
@@ -102,10 +102,19 @@
                             <div class="product-card">
                               <a href="${pageContext.request.contextPath}/product?id=${product.id}"
                                 class="product-card__link">
-                                <div class="product-card__img">
-                                  <img src="${pageContext.request.contextPath}/${product.imageUrl}"
-                                    alt="<c:out value='${product.name}'/>"
-                                    onerror="this.src='${pageContext.request.contextPath}/images/default-product.png'" />
+                            <div class="product-card__img">
+                                  <c:choose>
+                                    <c:when test="${fn:startsWith(product.imageUrl, 'images/')}">
+                                      <img src="${pageContext.request.contextPath}/${product.imageUrl}"
+                                        alt="<c:out value='${product.name}'/>"
+                                        onerror="this.src='${pageContext.request.contextPath}/images/default-product.png'" />
+                                    </c:when>
+                                    <c:otherwise>
+                                      <img src="${pageContext.request.contextPath}/uploads/${product.imageUrl}"
+                                        alt="<c:out value='${product.name}'/>"
+                                        onerror="this.src='${pageContext.request.contextPath}/images/default-product.png'" />
+                                    </c:otherwise>
+                                  </c:choose>
                                   <span class="product-badge product-badge--${product.category}">
                                     <c:out value="${product.category}" />
                                   </span>

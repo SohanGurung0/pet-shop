@@ -12,6 +12,6 @@
         <a href="${pageContext.request.contextPath}/login">Login</a>
         <a href="${pageContext.request.contextPath}/register">Register</a>
       </div>
-      <p class="footer-copy">&copy; 2026 Paw Furr-Ever.</p>
+      <p class="footer-copy">&copy; 2026 Paw Furr-Ever </p>
     </div>
   </footer>

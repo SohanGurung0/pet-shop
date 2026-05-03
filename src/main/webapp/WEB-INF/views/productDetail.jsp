@@ -1,4 +1,4 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
@@ -37,10 +37,20 @@
   <%-- Product Image --%>
   <div class="detail-image-wrapper">
     <div class="detail-image">
-      <img src="${pageContext.request.contextPath}/${product.imageUrl}"
-           alt="<c:out value='${product.name}'/>"
-           onerror="this.src='${pageContext.request.contextPath}/images/default-product.png'"
-           class="detail-img"/>
+      <c:choose>
+        <c:when test="${fn:startsWith(product.imageUrl, 'images/')}">
+          <img src="${pageContext.request.contextPath}/${product.imageUrl}"
+               alt="<c:out value='${product.name}'/>"
+               onerror="this.src='${pageContext.request.contextPath}/images/default-product.png'"
+               class="detail-img"/>
+        </c:when>
+        <c:otherwise>
+          <img src="${pageContext.request.contextPath}/uploads/${product.imageUrl}"
+               alt="<c:out value='${product.name}'/>"
+               onerror="this.src='${pageContext.request.contextPath}/images/default-product.png'"
+               class="detail-img"/>
+        </c:otherwise>
+      </c:choose>
     </div>
     <span class="product-badge product-badge--${product.category} detail-category-badge">
       <c:out value="${product.categoryLabel}"/>
