@@ -1,5 +1,5 @@
 /* ============================================================
-   PawShop — Global Design System
+   Paw Furr-Ever — Global Design System
    Pastel Palette: Pale Blues, Mint, Beige
    ============================================================ */
 
@@ -290,8 +290,8 @@ h1, h2, h3, h4 {
 /* ── Footer ───────────────────────────────────────────────── */
 .footer {
   background-color: white;
-  padding: 4rem 0 2rem;
-  margin-top: 4rem;
+  padding: 2rem 0 2rem;
+  margin-top: 2rem;
   border-top: 1px solid #eee;
 }
 
@@ -320,6 +320,25 @@ h1, h2, h3, h4 {
 
 /* ── Responsive ───────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .nav-links { display: none; } /* Mobile: hide links, usually a hamburger is needed but minimal code used here */
+  .navbar { height: auto; padding: 1rem 0; }
+  .nav-container { flex-direction: column; gap: 1rem; }
+  .nav-brand { margin-bottom: 0.5rem; }
+  .nav-links { 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 1rem; 
+    width: 100%; 
+  }
+  .nav-actions {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
   .container { padding: 0 1rem; }
+  
+  /* Footer mobile */
+  .footer-links { flex-direction: column; gap: 1rem; align-items: center; }
+  .footer-inner { gap: 2rem; }
 }

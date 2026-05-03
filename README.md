@@ -1,7 +1,7 @@
-#  PawShop — Pet Supply E-Commerce Project
+﻿#  Paw Furr-Ever Pet Supply E-Commerce Project
 
 ##  Overview
-PawShop is a production-ready Java/J2EE web application for a pet supply store. It features a complete MVC architecture, secure authentication, admin dashboard for product management, and a responsive, pastel-themed UI.
+Paw Furr-Ever is a production-ready Java/J2EE web application for a pet supply store. It features a complete MVC architecture, secure authentication, admin dashboard for product management, and a responsive, pastel-themed UI.
 
 This project is built as part of the CS5054NP Milestone 1 coursework.
 
@@ -25,33 +25,13 @@ This project is built as part of the CS5054NP Milestone 1 coursework.
 - **Build Tool**: Maven
 - **Server**: Apache Tomcat 9/10
 
-##  Project Structure
-```text
-apt_cw/
-├── sql/
-│   └── schema.sql           # Database initialization & seed data
-├── src/main/java/com/petsupply/
-│   ├── controller/          # Servlets
-│   ├── dao/                 # JDBC Data Access Objects
-│   ├── filter/              # Security & Encoding Filters
-│   ├── model/               # POJO Models
-│   ├── service/             # Business Logic Layer
-│   └── utils/               # Database & Validation Utilities
-├── src/main/webapp/
-│   ├── css/                 # Modern Pastel Styles
-│   ├── images/              # Product Images
-│   └── WEB-INF/
-│       ├── views/           # JSP Pages
-│       └── web.xml          # Deployment Descriptor
-└── pom.xml                  # Maven Dependencies
-```
 
 ##  Setup Instructions
 
 ### 1. Database Setup
 1. Start **XAMPP** and ensure **MySQL** is running on port 3306.
 2. Open **MyAdmin** (`http://localhost/phpmyadmin`).
-3. Create a new database named `pawshop_db`.
+3. Create a new database named `pet_supply_shop`.
 4. Import the file `sql/schema.sql` into the database.
 
 ### 2. intelij/IDE Setup

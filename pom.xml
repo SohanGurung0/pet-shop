@@ -90,6 +90,9 @@
                             <!-- Default port 9090 to avoid conflicts with other apps on 8080.
                                  Override with: mvn clean package cargo:run -Dcargo.servlet.port=XXXX -->
                             <cargo.servlet.port>${cargo.servlet.port}</cargo.servlet.port>
+                            <cargo.rmi.port>8305</cargo.rmi.port>
+                            <!-- Also try adding:
+                            <cargo.tomcat.ajp.port>8010</cargo.tomcat.ajp.port>-->
                         </properties>
                     </configuration>
                     <deployables>

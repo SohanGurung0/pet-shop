@@ -1,5 +1,5 @@
 /* ============================================================
-   PawShop — Auth Styles (Login/Register)
+   Paw Furr-Ever — Auth Styles (Login/Register)
    ============================================================ */
 
 
@@ -70,6 +70,12 @@
   margin-bottom: 1rem;
 }
 
+.auth-logo img {
+  max-width: 64px;
+  max-height: 64px;
+  object-fit: contain;
+}
+
 .auth-brand-name {
   font-size: 2.5rem;
   font-weight: 800;
@@ -83,6 +89,12 @@
 .auth-illustration {
   font-size: 8rem;
   filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
+}
+
+.auth-illustration img {
+  max-width: 100%;
+  max-height: 250px;
+  object-fit: contain;
 }
 
 /* ── Form Container ───────────────────────────────────────── */
@@ -121,7 +133,6 @@
 }
 
 
-/* ── Form Enhancements ────────────────────────────────────── */
 .form-row {
   display: flex;
   margin-bottom: 1.25rem;
@@ -142,7 +153,6 @@
   color: var(--color-muted);
   cursor: pointer;
 }
-/* ── Mobile ────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .auth-wrapper {
     flex-direction: column;
@@ -154,8 +164,10 @@
     padding: 2rem;
   }
   .auth-logo { font-size: 2.5rem}
+  .auth-logo img { max-width: 48px; max-height: 48px; }
   .auth-brand-name { font-size: 1.8rem; }
   .auth-illustration { font-size: 4rem; margin-top: 1rem; }
+  .auth-illustration img { max-height: 150px; }
   .auth-panel--right {
     padding: 2rem;
   }

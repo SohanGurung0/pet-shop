@@ -1,61 +1,31 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="${product.name} — ${product.description}"/>
-  <title><c:out value="${product.name}"/> — PawShop</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css"/>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/products.css"/>
-</head>
+<jsp:include page="/WEB-INF/templates/head.jsp">
+  <jsp:param name="pageTitle" value="${product.name} — Paw Furr-Ever" />
+  <jsp:param name="cssFile" value="products.css" />
+</jsp:include>
 <body>
 
 <%-- NAVBAR --%>
-<nav class="navbar">
-  <div class="nav-container">
-    <a href="${pageContext.request.contextPath}/home" class="nav-brand"><span class="nav-logo">🐾</span> PawShop</a>
-    <ul class="nav-links">
-      <li><a href="${pageContext.request.contextPath}/home" class="nav-link">Home</a></li>
-      <li><a href="${pageContext.request.contextPath}/products" class="nav-link">Shop All</a></li>
-    </ul>
-    <div class="nav-actions">
-      <a href="${pageContext.request.contextPath}/cart" class="nav-cart">🛒
-        <span class="cart-badge">
-          <c:choose>
-            <c:when test="${not empty sessionScope.cart}">${fn:length(sessionScope.cart)}</c:when>
-            <c:otherwise>0</c:otherwise>
-          </c:choose>
-        </span>
-      </a>
-      <c:choose>
-        <c:when test="${not empty sessionScope.loggedUser}">
-          <a href="${pageContext.request.contextPath}/logout" class="btn btn--ghost btn--sm">Logout</a>
-        </c:when>
-        <c:otherwise>
-          <a href="${pageContext.request.contextPath}/login" class="btn btn--primary btn--sm">Login</a>
-        </c:otherwise>
-      </c:choose>
-    </div>
-  </div>
-</nav>
+<jsp:include page="/WEB-INF/templates/nav.jsp">
+  <jsp:param name="activeLink" value="shop" />
+</jsp:include>
 
 <%-- BREADCRUMB --%>
 <div class="breadcrumb-bar">
   <div class="container">
     <nav class="breadcrumb">
       <a href="${pageContext.request.contextPath}/home">Home</a>
-      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-sep">..</span>
       <a href="${pageContext.request.contextPath}/products">Shop</a>
-      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-sep">..</span>
       <a href="${pageContext.request.contextPath}/products?category=${product.category}">
         <c:out value="${product.categoryLabel}"/>
       </a>
-      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-sep">..</span>
       <span class="breadcrumb-current"><c:out value="${product.name}"/></span>
     </nav>
   </div>
@@ -82,13 +52,13 @@
     <h1 class="detail-name"><c:out value="${product.name}"/></h1>
 
     <div class="detail-price-row">
-      <span class="detail-price">£<c:out value="${product.price}"/></span>
+      <span class="detail-price">Rs. <c:out value="${product.price}"/></span>
       <c:choose>
         <c:when test="${product.inStock}">
-          <span class="stock-badge stock-badge--in">✓ In Stock (${product.stock} left)</span>
+          <span class="stock-badge stock-badge--in"> In Stock (${product.stock} left)</span>
         </c:when>
         <c:otherwise>
-          <span class="stock-badge stock-badge--out">✗ Out of Stock</span>
+          <span class="stock-badge stock-badge--out"> Out of Stock</span>
         </c:otherwise>
       </c:choose>
     </div>
@@ -141,12 +111,7 @@
 
 </div>
 
-<footer class="footer">
-  <div class="container footer-inner">
-    <div class="footer-brand"><span class="nav-logo">🐾</span><span class="footer-brand-name">PawShop</span></div>
-    <p class="footer-copy">&copy; 2026 PawShop. CS5054NP Coursework.</p>
-  </div>
-</footer>
+<jsp:include page="/WEB-INF/templates/footer.jsp" />
 
 </body>
 </html>

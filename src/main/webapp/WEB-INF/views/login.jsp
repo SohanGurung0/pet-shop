@@ -2,29 +2,19 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Log in to PawShop — your pet supply destination for dog food, toys, vitamins and supplements."/>
-  <title>Login — PawShop Pet Supply</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css"/>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/auth.css"/>
-</head>
+<jsp:include page="/WEB-INF/templates/head.jsp">
+  <jsp:param name="pageTitle" value="Login — Paw Furr-Ever Pet Supply" />
+  <jsp:param name="description" value="Log in to Paw Furr-Ever" />
+  <jsp:param name="cssFile" value="auth.css" />
+</jsp:include>
 <body class="auth-body">
 
 <div class="auth-wrapper">
 
   <!-- Left panel — branding -->
-  <div class="auth-panel auth-panel--left">
-    <div class="auth-brand">
-      <div class="auth-logo">🐾</div>
-      <h1 class="auth-brand-name">PawShop</h1>
-      <p class="auth-brand-tagline">Premium supplies for your beloved pets</p>
-    </div>
-    <div class="auth-illustration">🐶</div>
-  </div>
+  <jsp:include page="/WEB-INF/templates/auth-left.jsp">
+    <jsp:param name="tagline" value="Premium supplies for your beloved pets" />
+  </jsp:include>
 
   <!-- Right panel — form -->
   <div class="auth-panel auth-panel--right">
@@ -92,14 +82,5 @@
   </div>
 
 </div>
-  <!--<script>
-    document.getElementById('togglePassword').addEventListener('click', function () {
-      const passwordInput = document.getElementById('password');
-      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-      passwordInput.setAttribute('type', type);
-      this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
-    });
-
-  </script> -->
 </body>
 </html>

@@ -11,9 +11,9 @@ import java.io.IOException;
 /**
  * AdminUserServlet — admin management of user accounts.
  *
- * GET  /admin/users                       → list all users
- * GET  /admin/users?action=approve&id=X   → approve user
- * GET  /admin/users?action=reject&id=X    → reject user
+ * GET /admin/users → list all users
+ * GET /admin/users?action=approve&id=X → approve user
+ * GET /admin/users?action=reject&id=X → reject user
  */
 @WebServlet("/admin/users")
 public class AdminUserServlet extends HttpServlet {
@@ -32,7 +32,7 @@ public class AdminUserServlet extends HttpServlet {
                 boolean ok = userService.approveUser(id);
                 HttpSession s = request.getSession(true);
                 s.setAttribute(ok ? "successMsg" : "errorMsg",
-                               ok ? "User approved." : "Failed to approve user.");
+                        ok ? "User approved." : "Failed to approve user.");
             }
             response.sendRedirect(request.getContextPath() + "/admin/users");
 
@@ -42,21 +42,28 @@ public class AdminUserServlet extends HttpServlet {
                 boolean ok = userService.rejectUser(id);
                 HttpSession s = request.getSession(true);
                 s.setAttribute(ok ? "successMsg" : "errorMsg",
-                               ok ? "User rejected." : "Failed to reject user.");
+                        ok ? "User rejected." : "Failed to reject user.");
             }
             response.sendRedirect(request.getContextPath() + "/admin/users");
 
         } else {
             // Default: list all users
             request.setAttribute("users", userService.getAllUsers());
-            request.setAttribute("pendingUsers", userService.getUsersByStatus("pending"));
+
+            java.util.List<com.petsupply.model.User> pendingList = userService.getUsersByStatus("pending");
+            request.setAttribute("pendingUserList", pendingList);
+            request.setAttribute("pendingUsers", pendingList.size());
+
             request.getRequestDispatcher("/WEB-INF/views/admin/userList.jsp")
-                   .forward(request, response);
+                    .forward(request, response);
         }
     }
 
     private int parseId(String idParam) {
-        try { return Integer.parseInt(idParam); }
-        catch (Exception e) { return -1; }
+        try {
+            return Integer.parseInt(idParam);
+        } catch (Exception e) {
+            return -1;
+        }
     }
 }

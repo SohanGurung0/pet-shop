@@ -2,29 +2,16 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Manage Products — PawShop Admin</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css"/>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css"/>
-</head>
+<jsp:include page="/WEB-INF/templates/head.jsp">
+  <jsp:param name="pageTitle" value="Manage Products — Paw Furr-Ever Admin" />
+  <jsp:param name="cssFile" value="admin.css" />
+</jsp:include>
 <body class="admin-body">
 
 <div class="admin-layout">
-  <aside class="admin-sidebar">
-    <div class="admin-sidebar__brand"><span class="nav-logo">🐾</span><span>PawShop Admin</span></div>
-    <nav class="admin-nav">
-      <a href="${pageContext.request.contextPath}/admin/dashboard" class="admin-nav__link"><span class="admin-nav__icon">📊</span> Dashboard</a>
-      <a href="${pageContext.request.contextPath}/admin/products" class="admin-nav__link admin-nav__link--active"><span class="admin-nav__icon">📦</span> Products</a>
-      <a href="${pageContext.request.contextPath}/admin/users"    class="admin-nav__link"><span class="admin-nav__icon">👥</span> Users</a>
-      <div class="admin-nav__divider"></div>
-      <a href="${pageContext.request.contextPath}/home"    class="admin-nav__link"><span class="admin-nav__icon">🏠</span> View Shop</a>
-      <a href="${pageContext.request.contextPath}/logout"  class="admin-nav__link admin-nav__link--logout"><span class="admin-nav__icon">🚪</span> Logout</a>
-    </nav>
-  </aside>
+  <jsp:include page="/WEB-INF/templates/admin/sidebar.jsp">
+    <jsp:param name="activeLink" value="products" />
+  </jsp:include>
 
   <main class="admin-main">
     <div class="admin-topbar">
@@ -69,7 +56,7 @@
               </td>
               <td><strong><c:out value="${p.name}"/></strong></td>
               <td><span class="product-badge product-badge--${p.category}"><c:out value="${p.category}"/></span></td>
-              <td>£<c:out value="${p.price}"/></td>
+              <td>Rs. <c:out value="${p.price}"/></td>
               <td>
                 <c:choose>
                   <c:when test="${p.stock > 0}"><span class="stock-badge stock-badge--in">${p.stock}</span></c:when>

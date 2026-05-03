@@ -1,36 +1,23 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Edit Product — PawShop Admin</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css"/>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin.css"/>
-</head>
+<jsp:include page="/WEB-INF/templates/head.jsp">
+  <jsp:param name="pageTitle" value="Edit Product — Paw Furr-Ever Admin" />
+  <jsp:param name="cssFile" value="admin.css" />
+</jsp:include>
 <body class="admin-body">
 
 <div class="admin-layout">
-  <aside class="admin-sidebar">
-    <div class="admin-sidebar__brand"><span class="nav-logo">🐾</span><span>PawShop Admin</span></div>
-    <nav class="admin-nav">
-      <a href="${pageContext.request.contextPath}/admin/dashboard" class="admin-nav__link"><span class="admin-nav__icon">📊</span> Dashboard</a>
-      <a href="${pageContext.request.contextPath}/admin/products"  class="admin-nav__link admin-nav__link--active"><span class="admin-nav__icon">📦</span> Products</a>
-      <a href="${pageContext.request.contextPath}/admin/users"     class="admin-nav__link"><span class="admin-nav__icon">👥</span> Users</a>
-      <div class="admin-nav__divider"></div>
-      <a href="${pageContext.request.contextPath}/home"   class="admin-nav__link"><span class="admin-nav__icon">🏠</span> View Shop</a>
-      <a href="${pageContext.request.contextPath}/logout" class="admin-nav__link admin-nav__link--logout"><span class="admin-nav__icon">🚪</span> Logout</a>
-    </nav>
-  </aside>
+  <jsp:include page="/WEB-INF/templates/admin/sidebar.jsp">
+    <jsp:param name="activeLink" value="products" />
+  </jsp:include>
 
   <main class="admin-main">
     <div class="admin-topbar">
       <div>
         <h1 class="admin-page-title">Edit Product</h1>
-        <p class="admin-page-subtitle"><a href="${pageContext.request.contextPath}/admin/products">← Back to Products</a></p>
+        <p class="admin-page-subtitle"><a href="${pageContext.request.contextPath}/admin/products">â† Back to Products</a></p>
       </div>
     </div>
 
@@ -56,7 +43,7 @@
           <div class="form-group">
             <label for="category" class="form-label">Category <span class="required">*</span></label>
             <select id="category" name="category" class="form-input form-select" required>
-              <option value="food"       ${product.category == 'food'       ? 'selected' : ''}>🦴 Dog Food</option>
+              <option value="food"       ${product.category == 'food'       ? 'selected' : ''}>🥩 Dog Food</option>
               <option value="toy"        ${product.category == 'toy'        ? 'selected' : ''}>🎾 Toy</option>
               <option value="vitamin"    ${product.category == 'vitamin'    ? 'selected' : ''}>💊 Vitamin</option>
               <option value="supplement" ${product.category == 'supplement' ? 'selected' : ''}>🌿 Supplement</option>
@@ -64,7 +51,7 @@
           </div>
 
           <div class="form-group">
-            <label for="price" class="form-label">Price (£) <span class="required">*</span></label>
+            <label for="price" class="form-label">Price (Rs. ) <span class="required">*</span></label>
             <input type="number" id="price" name="price" class="form-input"
                    value="<c:out value='${product.price}'/>"
                    step="0.01" min="0" required/>

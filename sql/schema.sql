@@ -5,7 +5,7 @@
 -- ============================================================
 
 DROP DATABASE IF EXISTS pet_supply_shop;
-CREATE DATABASE pet_supply_shop CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE pet_supply_shop;
 USE pet_supply_shop;
 
 -- ============================================================
@@ -109,18 +109,18 @@ INSERT INTO users (full_name, email, phone, password, role, status) VALUES
 -- Sample products
 INSERT INTO products (name, description, price, category, image_url, stock) VALUES
 ('Premium Puppy Kibble',    'High-protein puppy formula with real chicken, rice and DHA for brain development.',
- 24.99, 'food',       'images/products/puppy-kibble.png',       50),
+ 4250.00, 'food',       'images/products/puppy-kibble.png',       50),
 ('Adult Dog Food — Salmon', 'Grain-free salmon & sweet potato recipe for adult dogs with sensitive stomachs.',
- 29.99, 'food',       'images/products/adult-salmon.png',       40),
+ 5100.00, 'food',       'images/products/adult-salmon.png',       40),
 ('Squeaky Rope Toy',        'Durable braided cotton rope with squeaky centre — great for tug-of-war.',
-  8.99, 'toy',        'images/products/rope-toy.png',           80),
+  1530.00, 'toy',        'images/products/rope-toy.png',           80),
 ('Interactive Puzzle Ball', 'Treat-dispensing puzzle ball to keep curious dogs mentally stimulated.',
- 14.99, 'toy',        'images/products/puzzle-ball.png',        35),
+ 2550.00, 'toy',        'images/products/puzzle-ball.png',        35),
 ('Daily Multi-Vitamin',     'Complete daily vitamin supplement with Omega-3, Vitamin D & E for all breeds.',
- 18.50, 'vitamin',    'images/products/multivitamin.png',       60),
+ 3145.00, 'vitamin',    'images/products/multivitamin.png',       60),
 ('Joint Care Supplement',   'Glucosamine & chondroitin formula to support healthy joints in older dogs.',
- 22.00, 'supplement', 'images/products/joint-care.png',         45),
+ 3740.00, 'supplement', 'images/products/joint-care.png',         45),
 ('Dental Chew Sticks',      'Enzymatic dental chews that reduce tartar and freshen breath — pack of 20.',
- 11.99, 'supplement', 'images/products/dental-chews.png',       70),
+ 2040.00, 'supplement', 'images/products/dental-chews.png',       70),
 ('Omega-3 Fish Oil',        'Pure wild-caught fish oil in soft gels to support coat shine and joint health.',
- 16.75, 'vitamin',    'images/products/fish-oil.png',           55);
+ 2850.00, 'vitamin',    'images/products/fish-oil.png',           55);
