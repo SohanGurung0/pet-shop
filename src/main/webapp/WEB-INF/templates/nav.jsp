@@ -37,6 +37,9 @@
                   <a href="${pageContext.request.contextPath}/admin/dashboard"
                     class="btn btn--outline btn--sm">Admin</a>
                 </c:if>
+                <c:if test="${!sessionScope.loggedUser.admin}">
+                    <a href="${pageContext.request.contextPath}/orders" class="btn btn--ghost btn--sm ${param.activeLink == 'orders' ? 'nav-link--active' : ''}">My Orders</a>
+                </c:if>
                 <a href="${pageContext.request.contextPath}/logout" class="btn btn--ghost btn--sm">Logout</a>
               </c:when>
               <c:otherwise>

@@ -10,6 +10,7 @@
         <span class="nav-badge">${pendingUsers}</span>
       </c:if>
     </a>
+    <a href="${pageContext.request.contextPath}/admin/orders"   class="admin-nav__link ${param.activeLink == 'orders' ? 'admin-nav__link--active' : ''}"><span class="admin-nav__icon">📜</span> Orders</a>
     <div class="admin-nav__divider"></div>
     <a href="${pageContext.request.contextPath}/home"    class="admin-nav__link"><span class="admin-nav__icon">🏠</span> View Shop</a>
     <a href="${pageContext.request.contextPath}/logout"  class="admin-nav__link admin-nav__link--logout"><span class="admin-nav__icon">🚪</span> Logout</a>

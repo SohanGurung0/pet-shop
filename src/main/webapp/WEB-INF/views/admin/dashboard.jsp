@@ -47,10 +47,10 @@
               <%-- STAT CARDS --%>
                 <div class="stat-grid">
                   <div class="stat-card stat-card--blue">
-                    <div class="stat-card__icon">📦</div>
+                    <div class="stat-card__icon">💰</div>
                     <div class="stat-card__body">
-                      <div class="stat-card__value">${totalProducts}</div>
-                      <div class="stat-card__label">Total Products</div>
+                      <div class="stat-card__value">Rs. <fmt:formatNumber value="${totalSales}" maxFractionDigits="0" /></div>
+                      <div class="stat-card__label">Total Revenue</div>
                     </div>
                   </div>
                   <div class="stat-card stat-card--mint">
@@ -68,12 +68,21 @@
                     </div>
                   </div>
                   <div class="stat-card stat-card--lavender">
-                    <div class="stat-card__icon">🗂️</div>
+                    <div class="stat-card__icon">📦</div>
                     <div class="stat-card__body">
-                      <div class="stat-card__value">4</div>
-                      <div class="stat-card__label">Categories</div>
+                      <div class="stat-card__value">${totalProducts}</div>
+                      <div class="stat-card__label">Products</div>
                     </div>
                   </div>
+                </div>
+
+                <%-- SALES GRAPH --%>
+                <div class="admin-card graph-container">
+                    <div class="admin-card__header">
+                        <h2 class="admin-card__title">Sales Performance</h2>
+                        <span class="text-muted small">Last 7 Days</span>
+                    </div>
+                    <canvas id="salesChart" height="100"></canvas>
                 </div>
 
                 <%-- TWO-COLUMN LOWER SECTION --%>
@@ -104,7 +113,7 @@
                                     <c:out value="${p.category}" />
                                   </span></td>
                                 <td>Rs. 
-                                  <c:out value="${p.price}" />
+                                  <fmt:formatNumber value="${p.price}" minFractionDigits="2" maxFractionDigits="2" />
                                 </td>
                                 <td>
                                   <c:choose>
@@ -159,6 +168,58 @@
         </main>
       </div>
 
-    </body>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+        const ctx = document.getElementById('salesChart').getContext('2d');
+        const labels = [
+            <c:forEach var="entry" items="${salesData}" varStatus="loop">
+                '${entry.key}'${!loop.last ? ',' : ''}
+            </c:forEach>
+        ];
+        const data = [
+            <c:forEach var="entry" items="${salesData}" varStatus="loop">
+                ${entry.value}${!loop.last ? ',' : ''}
+            </c:forEach>
+        ];
 
-    </html>
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Total Sales (Rs.)',
+                    data: data,
+                    borderColor: '#6366f1',
+                    backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#6366f1',
+                    pointRadius: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) { return 'Rs. ' + value; }
+                        }
+                    }
+                }
+            }
+        });
+      </script>
+
+      <style>
+          .graph-container { margin-bottom: 2rem; padding: 1.5rem; }
+          .text-muted { color: #718096; }
+          .small { font-size: 0.8rem; }
+      </style>
+
+    </body>
+</html>

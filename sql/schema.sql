@@ -60,6 +60,8 @@ CREATE TABLE orders (
     id            INT AUTO_INCREMENT PRIMARY KEY,
     user_id       INT           NOT NULL,
     total_price   DECIMAL(10,2) NOT NULL,
+    shipping_address TEXT NOT NULL,
+    payment_method   VARCHAR(50) NOT NULL DEFAULT 'COD',
     status        ENUM('pending','confirmed','shipped','delivered','cancelled')
                   NOT NULL DEFAULT 'pending',
     created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

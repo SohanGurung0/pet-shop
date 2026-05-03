@@ -1,4 +1,4 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
   <%@ taglib prefix="c" uri="jakarta.tags.core" %>
     <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
       <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
@@ -7,15 +7,15 @@
         <html lang="en">
 
         <jsp:include page="/WEB-INF/templates/head.jsp">
-  <jsp:param name="pageTitle" value="Your Cart — Paw Furr-Ever" />
-  <jsp:param name="cssFile" value="products.css" />
-</jsp:include>
+          <jsp:param name="pageTitle" value="Your Cart — Paw Furr-Ever" />
+          <jsp:param name="cssFile" value="products.css" />
+        </jsp:include>
 
         <body>
 
           <jsp:include page="/WEB-INF/templates/nav.jsp">
-  <jsp:param name="activeLink" value="cart" />
-</jsp:include>
+            <jsp:param name="activeLink" value="cart" />
+          </jsp:include>
 
           <div class="page-header">
             <div class="container">
@@ -58,7 +58,7 @@
                                 </div>
                               </div>
                             </td>
-                            <td class="cart-price">Rs. 
+                            <td class="cart-price">Rs.
                               <fmt:formatNumber value="${entry.key.price}" minFractionDigits="2"
                                 maxFractionDigits="2" />
                             </td>
@@ -71,7 +71,7 @@
                                   class="form-input qty-input" onchange="this.form.submit()" />
                               </form>
                             </td>
-                            <td class="cart-subtotal">Rs. 
+                            <td class="cart-subtotal">Rs.
                               <fmt:formatNumber value="${entry.key.price * entry.value}" minFractionDigits="2"
                                 maxFractionDigits="2" />
                             </td>
@@ -98,7 +98,7 @@
                       <h2 class="cart-summary__title">Order Summary</h2>
                       <div class="cart-summary__row">
                         <span>Subtotal</span>
-                        <span>Rs. 
+                        <span>Rs.
                           <fmt:formatNumber value="${cartTotal}" minFractionDigits="2" maxFractionDigits="2" />
                         </span>
                       </div>
@@ -127,14 +127,16 @@
                         </span>
                       </div>
                       <c:if test="${cartTotal < 5000}">
-                        <p class="cart-delivery-hint">Add Rs. 
+                        <p class="cart-delivery-hint">Add Rs.
                           <fmt:formatNumber value="${5000 - cartTotal}" minFractionDigits="2" maxFractionDigits="2" />
                           more for free delivery!
                         </p>
                       </c:if>
                       <c:choose>
-                        <c:when test="${not empty sessionScope.loggedUser && sessionScope.loggedUser.approved}">
-                          <button class="btn btn--primary btn--full btn--lg">Proceed to Checkout</button>
+                        <c:when
+                          test="${not empty sessionScope.loggedUser && sessionScope.loggedUser.approved && sessionScope.loggedUser.role == 'user'}">
+                          <a href="${pageContext.request.contextPath}/checkout"
+                            class="btn btn--primary btn--full btn--lg">Proceed to Checkout</a>
                         </c:when>
                         <c:otherwise>
                           <a href="${pageContext.request.contextPath}/login" class="btn btn--primary btn--full btn--lg">

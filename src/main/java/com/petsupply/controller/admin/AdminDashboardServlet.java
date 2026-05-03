@@ -28,6 +28,12 @@ public class AdminDashboardServlet extends HttpServlet {
         request.setAttribute("totalProducts",  productService.getTotalProductCount());
         request.setAttribute("totalUsers",     userService.getAllUsers().size());
         request.setAttribute("pendingUsers",   userService.countPendingUsers());
+        
+        java.util.Map<String, java.math.BigDecimal> salesData = new com.petsupply.service.OrderService().getSalesData();
+        java.math.BigDecimal totalSales = salesData.values().stream().reduce(java.math.BigDecimal.ZERO, java.math.BigDecimal::add);
+        
+        request.setAttribute("totalSales",     totalSales);
+        request.setAttribute("salesData",      salesData);
         request.setAttribute("categoryStats",  productService.getCategoryStats());
 
         // Recent products table (latest 5)

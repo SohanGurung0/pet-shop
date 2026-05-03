@@ -170,6 +170,61 @@
 
         <jsp:include page="/WEB-INF/templates/footer.jsp" />
 
+        <c:if test="${param.checkoutSuccess == 'true'}">
+          <div id="checkoutModal" class="modal-overlay">
+            <div class="modal-content">
+              <div class="modal-icon">🎉</div>
+              <h2>Checkout Complete!</h2>
+              <p>Thank you for your order. We've received it and will start processing it soon.</p>
+              <div class="modal-actions">
+                <a href="${pageContext.request.contextPath}/orders" class="btn btn--primary">View My Orders</a>
+                <button onclick="closeModal()" class="btn btn--ghost">Close</button>
+              </div>
+            </div>
+          </div>
+
+          <style>
+            .modal-overlay {
+              position: fixed;
+              top: 0; left: 0; width: 100%; height: 100%;
+              background: rgba(0,0,0,0.5);
+              backdrop-filter: blur(4px);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              z-index: 9999;
+            }
+            .modal-content {
+              background: white;
+              padding: 2.5rem;
+              border-radius: 20px;
+              text-align: center;
+              max-width: 400px;
+              width: 90%;
+              box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+              animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+            @keyframes modalPop {
+              from { transform: scale(0.8); opacity: 0; }
+              to { transform: scale(1); opacity: 1; }
+            }
+            .modal-icon { font-size: 4rem; margin-bottom: 1rem; }
+            .modal-content h2 { margin-bottom: 1rem; color: var(--color-primary-dark); }
+            .modal-content p { color: #666; margin-bottom: 2rem; }
+            .modal-actions { display: flex; flex-direction: column; gap: 0.75rem; }
+          </style>
+
+          <script>
+            function closeModal() {
+              document.getElementById('checkoutModal').style.display = 'none';
+              // Remove the query param from URL without reloading
+              const url = new URL(window.location);
+              url.searchParams.delete('checkoutSuccess');
+              window.history.replaceState({}, '', url);
+            }
+          </script>
+        </c:if>
+
       </body>
 
       </html>
