@@ -118,7 +118,7 @@
                                     <c:out value="${product.description}" />
                                   </p>
                                   <div class="product-card__footer">
-                                    <span class="product-card__price">£
+                                    <span class="product-card__price">Rs.
                                       <c:out value="${product.price}" />
                                     </span>
                                     <c:choose>

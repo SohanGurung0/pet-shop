@@ -84,6 +84,7 @@
 .hero-blob {
   width: 400px;
   height: 400px;
+  background-color: #D1FAE5; /* Mint green background */
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   display: flex;
   align-items: center;
@@ -235,9 +236,9 @@
 /* ── Mobile ────────────────────────────────────────────────── */
 @media (max-width: 992px) {
   .hero { flex-direction: column; text-align: center; padding-top: 3rem; }
-  .hero-image { justify-content: center; width: 100%; }
-  .hero-blob { width: 300px; height: 300px; font-size: 10rem; }
-  .hero-title { font-size: 3rem; }
+  .hero-image { justify-content: center; width: 100%; margin-top: 2rem; }
+  .hero-blob { width: min(400px, 90vw); height: min(400px, 90vw); }
+  .hero-title { font-size: 2.5rem; }
   .hero-cta { justify-content: center; }
   .hero-stats { justify-content: center; }
 }

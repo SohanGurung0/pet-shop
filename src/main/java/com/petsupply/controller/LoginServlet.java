@@ -66,20 +66,17 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        // Create session
-        HttpSession session = request.getSession(true);
-        session.setAttribute("loggedUser", user);
-        session.setAttribute("userId",   user.getId());
-        session.setAttribute("userRole", user.getRole());
-        session.setAttribute("userName", user.getFullName());
-        session.setMaxInactiveInterval(30 * 60); // 30 minutes
+        // Create session using SessionUtil
+        com.petsupply.utils.SessionUtil.set(request, "loggedUser", user);
+        com.petsupply.utils.SessionUtil.set(request, "userId",   user.getId());
+        com.petsupply.utils.SessionUtil.set(request, "userRole", user.getRole());
+        com.petsupply.utils.SessionUtil.set(request, "userName", user.getFullName());
+        
+        request.getSession().setMaxInactiveInterval(30 * 60); // 30 minutes
 
-        // Optional remember-me cookie (1 week)
+        // Set remember-me cookie using CookieUtil (1 week)
         if (remember) {
-            Cookie cookie = new Cookie("userEmail", user.getEmail());
-            cookie.setMaxAge(7 * 24 * 60 * 60);
-            cookie.setHttpOnly(true);
-            response.addCookie(cookie);
+            com.petsupply.utils.CookieUtil.setCookie(response, "userEmail", user.getEmail(), 7 * 24 * 60 * 60);
         }
 
         // Role-based redirect

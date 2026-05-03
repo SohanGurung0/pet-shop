@@ -18,23 +18,11 @@ public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Invalidate session
-        HttpSession session = request.getSession(false);
-        if (session != null) {
-            session.invalidate();
-        }
+        // Invalidate session via SessionUtil
+        com.petsupply.utils.SessionUtil.invalidate(request);
 
-        // Clear remember-me cookie
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if ("userEmail".equals(cookie.getName())) {
-                    cookie.setMaxAge(0);
-                    cookie.setPath("/");
-                    response.addCookie(cookie);
-                }
-            }
-        }
+        // Clear remember-me cookie via CookieUtil
+        com.petsupply.utils.CookieUtil.deleteCookie(response, "userEmail");
 
         response.sendRedirect(request.getContextPath() + "/login");
     }

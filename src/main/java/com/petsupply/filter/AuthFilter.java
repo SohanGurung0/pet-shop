@@ -32,6 +32,21 @@ public class AuthFilter implements Filter {
         HttpSession session = request.getSession(false);
         User user = (session != null) ? (User) session.getAttribute("loggedUser") : null;
 
+        // ── Auto-login via cookie if no session ────────────────
+        if (user == null) {
+            String cookieEmail = com.petsupply.utils.CookieUtil.getCookie(request, "userEmail");
+            if (cookieEmail != null) {
+                com.petsupply.service.UserService userService = new com.petsupply.service.UserService();
+                user = userService.getUserByEmail(cookieEmail);
+                if (user != null && user.isApproved()) {
+                    com.petsupply.utils.SessionUtil.set(request, "loggedUser", user);
+                    com.petsupply.utils.SessionUtil.set(request, "userId", user.getId());
+                    com.petsupply.utils.SessionUtil.set(request, "userRole", user.getRole());
+                    com.petsupply.utils.SessionUtil.set(request, "userName", user.getFullName());
+                }
+            }
+        }
+
         String requestURI = request.getRequestURI();
         String contextPath = request.getContextPath();
 

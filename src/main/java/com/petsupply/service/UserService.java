@@ -129,4 +129,9 @@ public class UserService {
     public int countPendingUsers() {
         return userDao.findByStatus("pending").size();
     }
+
+    /** Find user by email. */
+    public User getUserByEmail(String email) {
+        return userDao.findByEmail(email);
+    }
 }
