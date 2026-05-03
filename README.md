@@ -37,23 +37,26 @@ pet-shop/
 │   └── schema.sql              # Database schema & seed data
 ├── src/main/java/
 │   └── com.petsupply/
-│       ├── controller/         # Servlets (Login, Register, Cart, Home)
+│       ├── controller/         # Servlets (Login, Register, Cart, Checkout, Orders)
 │       ├── dao/                # Data Access Objects (JDBC)
 │       ├── filter/             # AuthFilter & EncodingFilter
-│       ├── model/              # Domain Models (Product, User, Cart)
+│       ├── model/              # Domain Models (Product, User, Order)
 │       ├── service/            # Business Logic & Validation
-│       └── utils/              # DatabaseConnection, BCrypt, ImageUtil , cookies , session
+│       └── utils/              # DatabaseConnection, BCrypt, ImageUtil, cookies, session
 ├── src/main/webapp/
 │   ├── css/                    # Stylesheets (home.css, admin.css, etc.)
 │   ├── images/                 # Static branding & default assets
 │   └── WEB-INF/
 │       ├── templates/          # Header, Nav, Footer fragments
 │       └── views/              # JSP Pages
-│           ├── admin/          # Dashboard, Product CRUD forms
+│           ├── admin/          # Dashboard, Product CRUD, Order Management
 │           ├── error/          # 404 and 500 error pages
 │           ├── home.jsp        # Landing page
 │           ├── products.jsp    # Product catalogue
-│           └── cart.jsp        # Shopping cart view
+│           ├── cart.jsp        # Shopping cart view
+│           ├── checkout.jsp    # Secure checkout form
+│           ├── orderHistory.jsp # User's past orders
+│           └── orderDetail.jsp # Detailed order receipt view
 ├── pom.xml                     # Maven project configuration
 └── FLOWS.md                    # Detailed logic & architectural flows
 
@@ -77,27 +80,33 @@ External Storage:
 1. **Login**: User submits credentials to `LoginServlet`.
 2. **Verification**: System fetches user by email and compares hashes using `BCrypt.checkpw`.
 3. **Session Management**: On success, user ID, name, and role are stored in the `HttpSession`.
-4. **Cookie Persistence**: Optional "Remember Me" functionality stores email in a secure cookie.
-5. **Filter Protection**: `AuthFilter` intercepts requests to `/admin/*`, `/cart`, and `/checkout`, ensuring the user is logged in, approved, and has the correct role.
+4. **Filter Protection**: `AuthFilter` intercepts requests to `/admin/*`, `/cart`, and `/checkout`, ensuring the user is logged in, approved, and has the correct role.
 
 ### 3. Product CRUD & File Management
 1. **Create/Update**: Admin submits product form with `enctype="multipart/form-data"`.
 2. **Image Upload**: `ImageUtil` saves the file to `~/pet-supply-uploads/` with a unique timestamped filename.
 3. **Database Entry**: `AdminProductServlet` saves the relative image filename in the MySQL `products` table.
 4. **Serving**: `ImageServlet` handles `/uploads/*` requests by streaming file bytes from the external storage folder.
-5. **Cleanup**: When a product is deleted or its image is replaced, `ImageUtil` automatically deletes the old file from the disk to save space.
 
-### 4. Shopping Cart Flow
-1. **Add to Cart**: Users click "Add to Cart" on the shop page.
-2. **State**: `CartServlet` stores the cart object in the user's **Session**, allowing it to persist across page reloads.
-3. **Management**: Users can update quantities or remove items directly in the cart view.
-4. **Checkout**: `CheckoutServlet` (Placeholder for M2) ensures the user is logged in before allowing them to proceed.
+### 4. Checkout & Order Processing
+1. **Validation**: `CheckoutServlet` ensures only logged-in, approved users with the `user` role can checkout.
+2. **Details**: User provides shipping address; payment is restricted to **Cash on Delivery (COD)** for this version.
+3. **Atomic Transaction**: `OrderDao` performs a database transaction that:
+   - Inserts the main order record.
+   - Inserts each item into `order_items`.
+   - **Reduces product stock** levels automatically.
+4. **Success**: User is redirected to home with a success popup and can view the order in **My Orders**.
+
+### 5. Admin Order Management & Analytics
+1. **Analytics**: Admin dashboard features a **Sales Performance Graph** (Chart.js) showing revenue trends for the last 7 days.
+2. **Tracking**: Admin can view all customer orders and their current fulfillment status.
+3. **Workflow**: Admin can update order status (Pending → Confirmed → Shipped → Delivered).
+4. **Maintenance**: Admin has the authority to delete past order records from the system.
 
 ---
 
 ##  Default Accounts
 - **Admin**: `admin@petsupply.com` / `Admin@123`
-- **Note**: New users register with status 'pending' and must be approved by an admin via the admin dashboard.
 
 ---
 
