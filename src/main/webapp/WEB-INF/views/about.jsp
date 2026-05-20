@@ -60,7 +60,7 @@
             <!-- Member 4 -->
             <div class="team-card">
               <div class="team-img-wrapper">
-                <img src="${pageContext.request.contextPath}/images/Members/Member4.png" alt="Sashank Bikram Shahi"
+                <img src="${pageContext.request.contextPath}/images/Members/Member4.jpeg" alt="Sashank Bikram Shahi"
                   class="team-img" />
               </div>
               <h3>Sashank Bikram Shahi</h3>
