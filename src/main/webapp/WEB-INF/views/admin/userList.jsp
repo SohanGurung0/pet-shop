@@ -66,9 +66,9 @@
                         <td class="text-muted">${u.createdAt}</td>
                         <td class="table-actions">
                           <a href="${pageContext.request.contextPath}/admin/users?action=approve&id=${u.id}"
-                            class="btn btn--success btn--xs">âœ“ Approve</a>
+                            class="btn btn--success btn--xs"> Approve</a>
                           <a href="${pageContext.request.contextPath}/admin/users?action=reject&id=${u.id}"
-                            class="btn btn--danger btn--xs">âœ• Reject</a>
+                            class="btn btn--danger btn--xs"> Reject</a>
                         </td>
                       </tr>
                     </c:forEach>

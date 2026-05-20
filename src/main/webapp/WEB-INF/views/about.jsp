@@ -17,7 +17,7 @@
       <section class="about-hero">
         <div class="container">
           <h1>About Us</h1>
-          <p>We are a passionate team of pet lovers dedicated to providing the best for your furry friends.</p>
+          <p>We are a passionate team of pet lovers dedicated to providing the best for your pets</p>
         </div>
       </section>
 
@@ -27,63 +27,67 @@
           <div class="team-grid">
             <!-- Member 1 -->
             <div class="team-card">
-              <div class="team-img-wrapper">
-                <img src="${pageContext.request.contextPath}/images/Members/member1.png" alt="member1"
-                  class="team-img" />
+              <div class="team-img-wrapper"><a href="https://sohangrg.vercel.app/" target="_blank">
+                <img src="${pageContext.request.contextPath}/images/Members/Member1.png" alt="Sohan Gurung"
+                     class="team-img" />
+              </a>
               </div>
               <h3>Sohan Gurung</h3>
-              <p class="role">Founder & CEO</p>
-              <p class="bio">Sohan started Paw Furr-Ever to ensure every pet gets the care they deserve.</p>
+              <p class="role">System Security</p>
+              <p class="bio">Sohan was responsible for developing the core authentication system of the application.
+              </p>
             </div>
             <!-- Member 2 -->
             <div class="team-card">
               <div class="team-img-wrapper">
-                <img src="${pageContext.request.contextPath}/images/Members/member1.png" alt="member1"
+                <img src="${pageContext.request.contextPath}/images/Members/Member2.jpeg" alt="Priyanka Gurung"
                   class="team-img" />
               </div>
               <h3>Priyanka Gurung</h3>
-              <p class="role">Head Veterinarian</p>
-              <p class="bio">Priyanka ensures all our products are safe and healthy for your pets.</p>
+              <p class="role">Authentication and Validation</p>
+              <p class="bio">Priyanka handled the error handling and filter implementation across the application.</p>
             </div>
             <!-- Member 3 -->
             <div class="team-card">
               <div class="team-img-wrapper">
-                <img src="${pageContext.request.contextPath}/images/Members/member1.png" alt="member1"
+                <img src="${pageContext.request.contextPath}/images/Members/Member3.jpeg" alt="Sandeep Gurung"
                   class="team-img" />
               </div>
               <h3>Sandeep Gurung</h3>
-              <p class="role">Product Manager</p>
-              <p class="bio">Sandeep curates the best toys, food, and supplements available.</p>
+              <p class="role">Admin CRUD Operations</p>
+              <p class="bio">Sandeep was responsible for building the product, user and image handling modules for admin.</p>
             </div>
             <!-- Member 4 -->
             <div class="team-card">
               <div class="team-img-wrapper">
-                <img src="${pageContext.request.contextPath}/images/Members/member1.png" alt="member1"
+                <img src="${pageContext.request.contextPath}/images/Members/Member4.png" alt="Sashank Bikram Shahi"
                   class="team-img" />
               </div>
               <h3>Sashank Bikram Shahi</h3>
-              <p class="role">Customer Support Lead</p>
-              <p class="bio">Sashank is always ready to help you with any questions or issues.</p>
+              <p class="role">Admin CRUD Operations</p>
+              <p class="bio">
+                Sashank developed the Admin panel, including the dashboard with the sales graph and the order.</p>
             </div>
             <!-- Member 5 -->
             <div class="team-card">
               <div class="team-img-wrapper">
-                <img src="${pageContext.request.contextPath}/images/Members/member1.png" alt="member1"
+                <img src="${pageContext.request.contextPath}/images/Members/Member5.jpeg" alt="Ayush Sharma"
                   class="team-img" />
               </div>
               <h3>Ayush Sharma</h3>
-              <p class="role">Logistics Coordinator</p>
-              <p class="bio">Ayush ensures your orders are packed with love and arrive on time.</p>
+              <p class="role">Product page</p>
+              <p class="bio">
+                Ayush built the product detail pages, shopping cart, checkout process and order placement functionality.</p>
             </div>
             <!-- Member 6 -->
             <div class="team-card">
               <div class="team-img-wrapper">
-                <img src="${pageContext.request.contextPath}/images/Members/member1.png" alt="member1"
+                <img src="${pageContext.request.contextPath}/images/Members/Member6.png" alt="Aayush Thapa"
                   class="team-img" />
               </div>
               <h3>Aayush Thapa</h3>
-              <p class="role">Marketing Specialist</p>
-              <p class="bio">Aayush shares our mission and amazing products with the world.</p>
+              <p class="role">CSS and DB connection</p>
+              <p class="bio">Aayush designed and developed the Home page, About Us page and ensured full mobile responsiveness across the application.</p>
             </div>
           </div>
         </div>
@@ -96,7 +100,7 @@
             <div class="contact-card">
               <div class="contact-icon">📧</div>
               <h3>Email</h3>
-              <p><a href="mailto:demo@gmail.com">demo@gmail.com</a></p>
+              <p><a href="mailto:pawfurr-ever@gmail.com">pawfurr-ever@gmail.com</a></p>
             </div>
             <div class="contact-card">
               <div class="contact-icon">📞</div>
