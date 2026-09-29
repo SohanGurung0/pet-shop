@@ -1,7 +1,6 @@
 package com.petsupply.service;
 
 import com.petsupply.dao.ProductDao;
-import com.petsupply.dao.ProductDaoImpl;
 import com.petsupply.model.Product;
 import com.petsupply.utils.ImageUtil;
 import com.petsupply.utils.ValidationUtil;
@@ -15,7 +14,7 @@ import java.util.List;
  */
 public class ProductService {
 
-    private final ProductDao productDao = new ProductDaoImpl();
+    private final ProductDao productDao = new ProductDao();
 
     /**
      * Add a new product with validation.

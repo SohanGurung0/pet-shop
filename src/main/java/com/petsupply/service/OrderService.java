@@ -1,7 +1,6 @@
 package com.petsupply.service;
 
 import com.petsupply.dao.OrderDao;
-import com.petsupply.dao.OrderDaoImpl;
 import com.petsupply.model.Order;
 import java.util.List;
 
@@ -10,7 +9,7 @@ public class OrderService {
     private final OrderDao orderDao;
 
     public OrderService() {
-        this.orderDao = new OrderDaoImpl();
+        this.orderDao = new OrderDao();
     }
 
     public boolean placeOrder(Order order) {

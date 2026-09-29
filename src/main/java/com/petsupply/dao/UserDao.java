@@ -1,37 +1,177 @@
 package com.petsupply.dao;
 
 import com.petsupply.model.User;
+import com.petsupply.utils.DatabaseConnection;
+
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * UserDao — interface for all user database operations.
- * Implementations use JDBC via DatabaseConnection.
+ * UserDaoImpl — JDBC implementation of UserDao.
+ *
+ * Follows the workshop pattern:
+ *   1. Get connection
+ *   2. Prepare SQL with ? placeholders
+ *   3. Set parameters
+ *   4. Execute
+ *   5. Close connection in finally block
  */
-public interface UserDao {
+public class UserDao {
 
-    /** Insert a new user. Returns false if email or phone already exists. */
-    boolean insertUser(User user);
+    // ── Helper: map one ResultSet row to a User object ────────
+    private User mapRow(ResultSet rs) throws SQLException {
+        return new User(
+            rs.getInt("id"),
+            rs.getString("full_name"),
+            rs.getString("email"),
+            rs.getString("phone"),
+            rs.getString("password"),
+            rs.getString("role"),
+            rs.getString("status"),
+            rs.getTimestamp("created_at"),
+            rs.getTimestamp("updated_at")
+        );
+    }
 
-    /** Find a user by email (case-insensitive). Returns null if not found. */
-    User findByEmail(String email);
+    // ── insertUser ────────────────────────────────────────────
+    public boolean insertUser(User user) {
+        // Check for duplicate email and phone before inserting
+        if (findByEmail(user.getEmail()) != null) {
+            System.out.println("Email already exists: " + user.getEmail());
+            return false;
+        }
+        if (findByPhone(user.getPhone()) != null) {
+            System.out.println("Phone already exists: " + user.getPhone());
+            return false;
+        }
 
-    /** Find a user by phone. Returns null if not found. */
-    User findByPhone(String phone);
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "INSERT INTO users (full_name, email, phone, password, role, status) "
+                       + "VALUES (?, ?, ?, ?, 'user', 'pending')";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, user.getFullName());
+            stmt.setString(2, user.getEmail());
+            stmt.setString(3, user.getPhone());
+            stmt.setString(4, user.getPassword());
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Error inserting user: " + e.getMessage());
+            return false;
+        } finally {
+            if (conn != null) { try { conn.close(); } catch (SQLException ex) {} }
+        }
+    }
 
-    /** Find a user by their primary key. Returns null if not found. */
-    User findById(int id);
+    // ── findByEmail ───────────────────────────────────────────
+    public User findByEmail(String email) {
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "SELECT * FROM users WHERE LOWER(email) = LOWER(?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) return mapRow(rs);
+        } catch (SQLException e) {
+            System.out.println("Error finding user by email: " + e.getMessage());
+        } finally {
+            if (conn != null) { try { conn.close(); } catch (SQLException ex) {} }
+        }
+        return null;
+    }
 
-    /** Return all registered users (all roles, all statuses). */
-    List<User> findAll();
+    // ── findByPhone ───────────────────────────────────────────
+    public User findByPhone(String phone) {
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "SELECT * FROM users WHERE phone = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, phone);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) return mapRow(rs);
+        } catch (SQLException e) {
+            System.out.println("Error finding user by phone: " + e.getMessage());
+        } finally {
+            if (conn != null) { try { conn.close(); } catch (SQLException ex) {} }
+        }
+        return null;
+    }
 
-    /** Return all users with the given status ('pending', 'approved', 'rejected'). */
-    List<User> findByStatus(String status);
+    // ── findById ──────────────────────────────────────────────
+    public User findById(int id) {
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "SELECT * FROM users WHERE id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) return mapRow(rs);
+        } catch (SQLException e) {
+            System.out.println("Error finding user by id: " + e.getMessage());
+        } finally {
+            if (conn != null) { try { conn.close(); } catch (SQLException ex) {} }
+        }
+        return null;
+    }
 
-    /**
-     * Update a user's status field.
-     * @param userId the user to update
-     * @param status 'pending' | 'approved' | 'rejected'
-     * @return true if the row was updated
-     */
-    boolean updateStatus(int userId, String status);
+    // ── findAll ───────────────────────────────────────────────
+    public List<User> findAll() {
+        List<User> users = new ArrayList<>();
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "SELECT * FROM users ORDER BY created_at DESC";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) users.add(mapRow(rs));
+        } catch (SQLException e) {
+            System.out.println("Error fetching all users: " + e.getMessage());
+        } finally {
+            if (conn != null) { try { conn.close(); } catch (SQLException ex) {} }
+        }
+        return users;
+    }
+
+    // ── findByStatus ──────────────────────────────────────────
+    public List<User> findByStatus(String status) {
+        List<User> users = new ArrayList<>();
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "SELECT * FROM users WHERE status = ? ORDER BY created_at DESC";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, status);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) users.add(mapRow(rs));
+        } catch (SQLException e) {
+            System.out.println("Error fetching users by status: " + e.getMessage());
+        } finally {
+            if (conn != null) { try { conn.close(); } catch (SQLException ex) {} }
+        }
+        return users;
+    }
+
+    // ── updateStatus ──────────────────────────────────────────
+    public boolean updateStatus(int userId, String status) {
+        Connection conn = null;
+        try {
+            conn = DatabaseConnection.getConnection();
+            String sql = "UPDATE users SET status = ? WHERE id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, status);
+            stmt.setInt(2, userId);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.out.println("Error updating user status: " + e.getMessage());
+            return false;
+        } finally {
+            if (conn != null) { try { conn.close(); } catch (SQLException ex) {} }
+        }
+    }
 }

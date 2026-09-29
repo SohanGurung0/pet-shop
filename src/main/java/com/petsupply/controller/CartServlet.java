@@ -72,29 +72,37 @@ public class CartServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         Map<Integer, Integer> cart = getCart(session);
 
-        String action = request.getParameter("action");
-        String idParam = request.getParameter("id");
+        String action   = request.getParameter("action");
+        String idParam  = request.getParameter("id");
         String qtyParam = request.getParameter("qty");
 
-        if ("add".equals(action) && idParam != null) {
-            int id = Integer.parseInt(idParam);
-            int qty = (qtyParam != null) ? Integer.parseInt(qtyParam) : 1;
-            cart.merge(id, qty, Integer::sum);
+        try {
+            if ("add".equals(action) && idParam != null) {
+                int id  = Integer.parseInt(idParam);
+                int qty = (qtyParam != null) ? Integer.parseInt(qtyParam) : 1;
+                if (id > 0 && qty > 0) {
+                    qty = Math.min(qty, 100); // cap per-add at 100
+                    int newQty = cart.getOrDefault(id, 0) + qty;
+                    cart.put(id, Math.min(newQty, 100)); // cap total per item at 100
+                }
 
-        } else if ("remove".equals(action) && idParam != null) {
-            cart.remove(Integer.parseInt(idParam));
+            } else if ("remove".equals(action) && idParam != null) {
+                cart.remove(Integer.parseInt(idParam));
 
-        } else if ("update".equals(action) && idParam != null && qtyParam != null) {
-            int id = Integer.parseInt(idParam);
-            int qty = Integer.parseInt(qtyParam);
-            if (qty <= 0) {
-                cart.remove(id);
-            } else {
-                cart.put(id, qty);
+            } else if ("update".equals(action) && idParam != null && qtyParam != null) {
+                int id  = Integer.parseInt(idParam);
+                int qty = Integer.parseInt(qtyParam);
+                if (qty <= 0) {
+                    cart.remove(id);
+                } else {
+                    cart.put(id, Math.min(qty, 100)); // cap at 100
+                }
+
+            } else if ("clear".equals(action)) {
+                cart.clear();
             }
-
-        } else if ("clear".equals(action)) {
-            cart.clear();
+        } catch (NumberFormatException e) {
+            // Silently ignore malformed id/qty — redirect back to cart
         }
 
         response.sendRedirect(request.getContextPath() + "/cart");

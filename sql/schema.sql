@@ -131,7 +131,7 @@ VALUES (
         'Admin User',
         'sohangrg281@gmail.com',
         '0000000000',
-        '$2b$10$Cu.W3hweWsfIp/i/TgvA4ejQbVamoqg1YUeBKi3N/X6/I6RsJW8Fm',
+        '$2a$10$Cu.W3hweWsfIp/i/TgvA4ejQbVamoqg1YUeBKi3N/X6/I6RsJW8Fm',
         'admin',
         'approved'
     );

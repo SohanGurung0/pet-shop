@@ -39,10 +39,10 @@ public class AuthFilter implements Filter {
                 com.petsupply.service.UserService userService = new com.petsupply.service.UserService();
                 user = userService.getUserByEmail(cookieEmail);
                 if (user != null && user.isApproved()) {
-                    com.petsupply.utils.SessionUtil.set(request, "loggedUser", user);
-                    com.petsupply.utils.SessionUtil.set(request, "userId", user.getId());
-                    com.petsupply.utils.SessionUtil.set(request, "userRole", user.getRole());
-                    com.petsupply.utils.SessionUtil.set(request, "userName", user.getFullName());
+                    request.getSession(true).setAttribute("loggedUser", user);
+                    request.getSession(true).setAttribute("userId", user.getId());
+                    request.getSession(true).setAttribute("userRole", user.getRole());
+                    request.getSession(true).setAttribute("userName", user.getFullName());
                 }
             }
         }

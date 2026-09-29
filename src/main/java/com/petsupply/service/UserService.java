@@ -1,7 +1,6 @@
 package com.petsupply.service;
 
 import com.petsupply.dao.UserDao;
-import com.petsupply.dao.UserDaoImpl;
 import com.petsupply.model.User;
 import com.petsupply.utils.PasswordUtil;
 import com.petsupply.utils.ValidationUtil;
@@ -19,7 +18,7 @@ import java.util.List;
  */
 public class UserService {
 
-    private final UserDao userDao = new UserDaoImpl();
+    private final UserDao userDao = new UserDao();
 
     /**
      * Register a new user.

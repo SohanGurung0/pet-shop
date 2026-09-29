@@ -19,7 +19,7 @@ public class LogoutServlet extends HttpServlet {
             throws ServletException, IOException {
 
         // Invalidate session via SessionUtil
-        com.petsupply.utils.SessionUtil.invalidate(request);
+        if (request.getSession(false) != null) request.getSession(false).invalidate();
 
         // Clear remember-me cookie via CookieUtil
         com.petsupply.utils.CookieUtil.deleteCookie(response, "userEmail");
