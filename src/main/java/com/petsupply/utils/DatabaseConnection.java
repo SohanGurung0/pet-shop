@@ -23,9 +23,12 @@ import java.sql.SQLException;
  */
 public class DatabaseConnection {
 
-    private static final String DB_URL      = "jdbc:mysql://localhost:3306/pet_supply_shop?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
-    private static final String DB_USER     = "root";
-    private static final String DB_PASSWORD = "";   // XAMPP default: empty password
+    // Read from environment variables (Render) — fall back to local XAMPP defaults
+    private static final String DB_URL      = System.getenv().getOrDefault(
+            "DB_URL",
+            "jdbc:mysql://localhost:3306/pet_supply_shop?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true");
+    private static final String DB_USER     = System.getenv().getOrDefault("DB_USER",     "root");
+    private static final String DB_PASSWORD = System.getenv().getOrDefault("DB_PASSWORD", "");   // XAMPP default: empty
 
     // Load MySQL driver once when class is initialised
     static {
